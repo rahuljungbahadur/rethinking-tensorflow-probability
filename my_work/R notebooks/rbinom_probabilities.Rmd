@@ -1,0 +1,98 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+# Simple bayesian problem 1
+
+| Given a fair coin what is the prob of observing 5 H in 5 trials
+
+= (no of ways of getting 5 H)/total no of possible ways or outcomes
+
+= (1)/(2^5)
+
+= 1/32
+
+= 0.03125
+
+This is also equal to 
+p(x) = choose(n, x) p^x (1-p)^(n-x)
+
+p(x) = 1 * (0.5)^5 * (0.5) ^ (5-5)
+```{r}
+dbinom(x = 5, size=5, prob=0.5)
+```
+Also
+
+10,000 sims of 5 coins at a time wit each having a 0.5 prob : No of them turning 5 is roughly the same
+```{r}
+sum(rbinom(10000, 5, 0.5)==5)/10000
+
+```
+
+
+
+
+## prob 2
+
+Prob of getting exactly 4 H in 5 trials
+
+= (no of ways of getting exactly 4H and 1 T)/total no of possible ways or outcomes
+
+= select any 4 trails to yield H/32
+
+= (5C4)/32
+
+= 5/32
+
+=0.15625
+
+```{r}
+dbinom(x = 4L, size=5, prob=0.5)
+```
+
+```{r}
+sum(rbinom(10000, size=5, prob=0.5)==4)/10000
+```
+
+
+## prob 3 
+
+| Given a bag of 1B, and 3 W marbels, what is the prob of observing 1B, 1W, 1B marbels with 3 random picking with replacements.
+
+= ways of getting 1 B + 1 W + 1B / total no of ways or outcome possible
+
+= (3)/4^3
+
+=5/64
+
+=0.046875
+
+```{r}
+n <- 1000000
+n
+```
+
+
+```{r}
+sum((rbinom(n, 1, 0.25) * rbinom(n, 1, 0.75) * rbinom(n, 1, 0.25))==1)/n
+```
+
+## prob 3 
+
+| Given a bag of 2B, and 3 W marbels, what is the prob of observing 1B, 1W, 1B marbels with 3 random picking with replacements.
+
+= (ways of selecting 1B * ways of selecting 1W * ways of selecting 1B)/total no of outcomes possible
+
+ = (2 * 2 * 2)/4^3
+ 
+ = 8/64
+ 
+ =0.125
+
+simulations
+
+```{r}
+sum((rbinom(n, size=1, 0.5) * rbinom(n, size=1, prob=0.5) * rbinom(n, size=1, prob=0.5))==1)/n
+```
+

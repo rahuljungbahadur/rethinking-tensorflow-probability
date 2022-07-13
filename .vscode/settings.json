@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "~/rethinkingtfp/bin/python3",
+    "python.pythonPath": "C:\\Anaconda3\\envs\\bmcp\\python.exe",
     "python.formatting.provider": "black",
     "python.languageServer": "Pylance",
     "files.exclude": {
